@@ -1,11 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
+import 'react-native-gesture-handler';
 import React from 'react';
 import type {Node} from 'react';
 import {
@@ -17,6 +11,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import {
   Colors,
@@ -52,7 +47,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -63,6 +58,8 @@ const App: () => Node = () => {
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Text> Hello World </Text>
+      <Text> Hello Hello Hello </Text>
+      <Text> Hello Hello Hello </Text>
     </SafeAreaView>
   );
 };
