@@ -8,7 +8,7 @@ import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {LOGIN} from '../../constants/routeName';
 
-const RegisterComponent = () => {
+const RegisterComponent = ({onSubmit, onChange, form, errors}) => {
   const {navigate} = useNavigation();
   return (
     <Container>
@@ -28,28 +28,40 @@ const RegisterComponent = () => {
             label="Nazwa użytkownika"
             iconPosition="right"
             placeholder="Podaj nazwę użytkownika"
-            error={'to pole jest wymagane'}
+            onChangeText={value => {
+              onChange({name: 'userName', value});
+            }}
+            error={errors.userName}
           />
 
-            <Input
-                label="Imię"
-                iconPosition="right"
-                placeholder="Podaj imię"
-                error={'to pole jest wymagane'}
-            />
+          <Input
+            label="Imię"
+            iconPosition="right"
+            placeholder="Podaj imię"
+            onChangeText={value => {
+              onChange({name: 'firstName', value});
+            }}
+            error={errors.firstName}
+          />
 
-            <Input
-                label="Nazwisko"
-                iconPosition="right"
-                placeholder="Podaj nazwisko"
-                error={'to pole jest wymagane'}
-            />
-            <Input
-                label="Email"
-                iconPosition="right"
-                placeholder="Podaj email"
-                error={'to pole jest wymagane'}
-            />
+          <Input
+            label="Nazwisko"
+            iconPosition="right"
+            placeholder="Podaj nazwisko"
+            onChangeText={value => {
+              onChange({name: 'lastName', value});
+            }}
+            error={errors.lastName}
+          />
+          <Input
+            label="Email"
+            iconPosition="right"
+            placeholder="Podaj email"
+            onChangeText={value => {
+              onChange({name: 'email', value});
+            }}
+            error={errors.email}
+          />
 
           <Input
             label="Hasło"
@@ -57,8 +69,12 @@ const RegisterComponent = () => {
             secureTextEntry={true}
             icon={<Text>Show</Text>}
             iconPosition="right"
+            onChangeText={value => {
+              onChange({name: 'password', value});
+            }}
+            error={errors.password}
           />
-          <CustomButton primary title="Submit" />
+          <CustomButton onPress={onSubmit} primary title="Submit" />
 
           <View style={styles.createSection}>
             <Text style={styles.infoText}>Masz już konto?</Text>
