@@ -1,15 +1,19 @@
 import {useState} from 'react';
+import {useContext} from 'react';
 import React from 'react';
 import RegisterComponent from '../../components/SignUp';
-import envs from '../../config/env';
+import register from '../../context/actions/auth/register';
+//import axios from '../../helpers/axiosInterceptor';
+import {GlobalContext} from '../../context/Provider';
 
 const Register = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const {BACKEND_URL} = envs;
+  const {
+    authDispatch,
+    authState: {error, loading, data},
+  } = useContext(GlobalContext);
 
-  console.log('BACKEND_DEV', BACKEND_URL);
-  console.log('__DEV__', __DEV__);
   const onChange = ({name, value}) => {
     setForm({...form, [name]: value});
 
@@ -37,7 +41,7 @@ const Register = () => {
   };
 
   const onSubmit = () => {
-    console.log('form', form);
+    //console.log('form', form);
 
     if (!form.userName) {
       setErrors(prev => {
@@ -68,7 +72,14 @@ const Register = () => {
         return {...prev, password: 'Proszę podać hasło'};
       });
     }
-    //validations
+
+    if (
+      Object.values(form).length === 5 &&
+      Object.values(form).every(item => item.trim().length > 0) &&
+      Object.values(errors).every(item => !item)
+    ) {
+      register(form)(authDispatch);
+    }
   };
 
   return (
@@ -77,6 +88,8 @@ const Register = () => {
       onChange={onChange}
       form={form}
       errors={errors}
+      error={error}
+      loading={loading}
     />
   );
 };

@@ -6,7 +6,7 @@ import Input from '../../components/common/input';
 import CustomButton from '../../components/common/CustomButton';
 import styles from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {REGISTER} from '../../constants/routeName';
+import {REGISTER} from '../../constants/routeNames';
 
 const LoginComponent = () => {
   const {navigate} = useNavigation();

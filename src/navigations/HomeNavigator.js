@@ -5,7 +5,7 @@ import {
   CONTACT_LIST,
   CREATE_CONTACT,
   SETTINGS,
-} from '../constants/routeName';
+} from '../constants/routeNames';
 import Contacts from '../screens/Contacts';
 import ContactDetail from '../screens/ContactDetail';
 import CreateContact from '../screens/CreateContact';
